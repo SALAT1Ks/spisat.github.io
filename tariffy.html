@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>тариф</title>
+    <style>
+                * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #place_header_logo {
+            float: left;
+            display: block;
+            margin-left: 1vh;
+        }
+
+        #place_header_logo {
+            float: left;
+            display: block;
+        }
+
+        #header {
+            width: 100%;
+            height: 15vh; /* Высота 15% от высоты окна браузера */
+            background-color: rgb(65,105,225);
+            display: flex;
+            justify-content: center; /* Горизонтальное выравнивание по центру */
+            align-items: center; /* Вертикальное выравнивание по центру */
+            padding: 0 1rem; /* Внутренние отступы для заголовка */
+        }
+
+        #logotype {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem; /* Отступ между логотипом и информацией */
+        }
+
+        #logotype img {
+            display: block; /* Убирает отступы изображения */
+            max-height: 100%; /* Максимальная высота изображения равна высоте контейнера */
+            height: auto; /* Высота автоматически подстраивается */
+        }
+
+        #information {
+            display: flex;
+            flex-direction: column; /* Выровнять элементы по вертикали */
+            align-items: center; /* Центрирование элементов внутри контейнера */
+        }
+
+        #information ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-content: space-between; /* Равномерное распределение элементов */
+        }
+
+        #main {
+            width: 100%;
+            flex: 1;
+            background-color: rgb(213, 233, 255);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2rem; /* Отступ сверху */
+        }
+
+        #footer {
+            width: 100%;
+            background-color: rgb(201, 214, 255);
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        #information li {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центрирование текста внутри каждого элемента */
+            font-size: 2vh;
+            margin: 0 3rem; /* Установите отступы между элементами списка */
+        }
+
+        #information a {
+            font-family: Arial;
+            font-size: 2vh;
+            color: rgb(255, 255, 255); /* Цвет текста */
+            text-decoration: none;
+            text-align: center; /* Центрирование текста внутри ссылок */
+        }
+
+        #footer_left p {
+            text-align: right;
+            color: grey;
+            margin-right: 2vh;
+            margin-bottom: 2rem;
+
+        }
+
+        #footer_piar a{
+            color: gray;
+
+        }
+
+        #footer_left {
+            
+            position: absolute;
+            left: 0;
+            margin-left: 10vw;
+
+        }
+
+
+        #footer_left a {
+            text-align: right;
+            color: rgb(0, 0, 19);
+            margin-right: 2vh;
+            margin-top: 1rem;
+            display: block;
+            margin-bottom: 5vh;
+
+        }
+
+        #footer_right {
+            position: absolute;
+            right: 0;
+            margin-right: 10vw;
+            margin-bottom: 2rem;
+        }
+
+        #footer_right p{
+            text-align: left;
+            color: grey;
+            margin-top: 2rem;
+            margin-bottom: 5vh;
+        }
+
+
+        #footer_right a{
+            text-align: right;
+            color: gray;
+            margin-top: 2vh;
+            margin-top: 1rem;
+            margin-bottom: 5vh;
+        }
+
+
+        .window {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        .window-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #icon_header_place {
+            margin-top: -3%; /* Добавить отступ сверху для иконок */
+            vertical-align: middle; /* Убедитесь, что иконки выровнены по центру по вертикали */
+        }
+
+        #call_app {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #002aff 0%, #02eeff 100%);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #call_app:hover {
+            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        #call_app:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+        }
+
+        #menu_information {
+            
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        #menu_information ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-content: center; /* Центрирование элементов */
+        }
+
+        #menu_information li {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центрирование текста внутри каждого элемента */
+            font-size: 2vh;
+            margin: 0 1rem; /* Установите отступы между элементами списка */
+            border: 1px solid black;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 50vh;
+            cursor: pointer;
+        }
+
+        #menu_information a {
+            font-family: Arial;
+            font-size: 2vh;
+            color: black; /* Цвет текста */
+            text-decoration: none;
+            text-align: center; /* Центрирование текста внутри ссылок */
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+    <div id="header">
+        <div id="logotype">
+            <img src="https://marketplace.canva.com/EAE4gudi2bc/1/0/1600w/canva-%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF-%D0%BA%D1%80%D1%83%D0%B3%D0%BB%D1%8B%D0%B9-%D0%BC%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D0%BB%D0%B8%D0%B7%D0%BC-%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8B-%D1%88%D1%80%D0%B8%D1%84%D1%82%D0%BE%D0%B2%D0%BE%D0%B9-BpbVJewDMYc.jpg"
+            alt="Логотип" width="80" height="80">
+        </div>
+        <div id="information">
+            <ul>
+                <li>
+                    
+                    <div id="place_header">
+                        <div id="place_header_logo">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADdElEQVR4nO1aS0hUURg+vYuyltETCguyMu/5Ry2h7GFUi2oRbdpGkSRJbXITEkS7FkLl/Ge0RFq5Kdq0iUIKSaRNKq2i6KHl4/7/+KA07MaZ0R6Ycs6de68j9MEPw2XmP993/sec+c8I8R9pxO70r5MJPisVNYLil6CoVyr6DopGAakHFLWB4gZQdNqp610tsgVOnA9L5KegaAwUe2aWeu/jGHLZDBOnVnPSU4ppiVQIoLsCkO5lTnySNZTU9eaESr6gNrkJFL0Ogbw3Ho1OJ8G5oZAHdLdLpM/hkecJEV1OYmBLoOR115DIH8Inz2lD/lSk+tYGQh7QWzDeAqMhr35F4kVptTc/cwGKrkZPnicicSXD3XfXS6Svlgu/kuhWFqr+rfmN3Uu16df6mURut/Q1vKO2b00mu3/LIuTfALlcVHtzp/J3ssmbJxWfB6QRC781vsjrniyRB8zJ0z5T31LRfgsRrKNoLSCGdMIi1Ods/QNyhbl/97i1AKkobprz06XNtOmE3GEY4dv2AkzPOZi8IHwCkC6arCGRnvtx3mPivKB2IM+vgFhd/zYjAYq67QXowjRwnnfzyzK/AkrqenNMm4QPATxs4jyTE2RRTd9ywzob9CPgbdakEPIbPwKazZy7lWEXMSh+4kMAXTfcnXbdEm3968+Aok7DIr5mLSCGySOGu+Pp44Gtf91+wdz/IWsBuTXeIlDsGi2CNOLE6YD55nBZalqhTCJM/XlN3kLhB4CsTHcpdbZBrpgunVJpk9p5M/KQTp+4L/JpAcliYwG/a6JDF6fuMPo7Qlu629Al05yHPy3BRb4FpEQofma9aHDWLDJFDN1jMyXAibtHMxaQjgK1RE1eIrUKz5sTiAAn7u6JPAJo/gPJCBL5QYQC7ougoX/gA/JQBOSHixRtCFxAWgRXRSDgsggLetAUbkFTmx6kiTARq+eN5tMKm6LloUKV3CyigL6JCVqAVHRGRAlAfhhg6jwKrOebojgxuFKPwgMg36V9iZmAE0/ushsTTiI/KpW7W8wkUrNO/4VbLrIBUnG9j6JtFNmCnTfeL7G7BKG20rveYpFNABxaBcjvDAR8DOz6KGjoGREg09Rpw0kn4eaLbAYkaO+/OxONQoIPitkAQD71918PaEw/E7MJgFyebpX0w88FiMgGpI7fyFVhLvITkIvL/yjkLXQAAAAASUVORK5CYII=" width="30vw" height="30vh" >
+                        </div>
+                        <div id="place_header_logo">
+                            <a>Адрес:<br>   
+                            Улица Пушкина<br>
+                            Дом Колатушкина</a>
+                        </div>
+    
+                    </div>
+
+                </li>
+                <li>
+                    <a>Режим работы:<br>
+                    пнд-пт<br>
+                    9:00-16:00</a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/2048px-Telegram_2019_Logo.svg.png" alt="tg" width="22vh" id="icon_header_place"> <b>+7 900 777 77 77</b></a><br>
+                    <a href="#"><img src="https://cdn.icon-icons.com/icons2/2429/PNG/512/whatsapp_logo_icon_147205.png" alt="Whatsapp" width="22vh" id="icon_header_place"> <b>+7 900 777 77 77</b></a>
+                </li>
+                <li id="call_app">
+                    <a href="#">заказать звонок</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="call_app_window" class="window">
+        <div class="window-content">
+            <span class="close">&times;</span>
+            <h2>Modal Header</h2>
+            <p>This is a beautiful modal window!</p>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div id="menu_information">
+            <ul>
+                <li>
+                    <a href="tariffy.html">тарифы</a>
+                </li>
+                <li>
+                    <a href="required_documents.html">необходимые документы</a>
+                </li>
+                <li>
+                    <a  href="about_us.html">о нас</a>
+                </li>
+                <li>
+                    <a href="contacts.html">контакты</a>
+                </li>
+                <li>
+                    <a href="test2.html">на главную</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer_left">
+            <a href="#">Адрес:<br>   
+            Улица Пушкина<br>
+            Дом Колатушкина</a>
+            <p>Copyright © 2024 - SALAT_ORG<br>
+            Нотариальная контора нотариуса города<br>
+            Ултра МСК</p><br>
+            <div id="footer_piar">
+                <a href="#" >created by SALAT1KsS</a>
+            </div>
+            
+        </div>
+        
+        <div id="logo_footer">
+            <a href="">
+                <img src="https://cs13.pikabu.ru/post_img/big/2019/11/07/8/1573132258112115277.jpg" alt="logo" width="400vw" height="400vh">
+            </a>
+       </div>
+        <div id="footer_right">
+            <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADX0lEQVR4nO2ZPWgUQRSAn/iDRqJF1EZ7xSLozu3MGfwDW9FKBbHUysJCK/8VxcYUIoizxBgUQYSggmhSJV5u5hKMmdlcNBiNGiURkri7Caio4MidRG5v97JpvJvF+2C6Y5mP997ue+8AqlSp8n+w556av/G6s9WgXiOy3CGDetOIukdBZ7Z1vFuMLGc3ol4zstwJZHnKd6j7K0E9E3SEZOxdhNlvE7fH/ZcOnqegG5jL04RLlTvm4zdRAsqwpnaCThAmp2YECLNV4ubn2QWoN5CrEdAFzOTLvwK5KDx8FxkFRN2DoAuYicOFArirX6EmN0LAG62/9Wkp6ADq7a0hTEz6otD6cQ5R8E6BLmAuzhcKkFRWoRtOVC1M4yuTy0AHNjG5CnPxzReFB+/nUgsG6AJh8rovCmlboZbJ2QSebzujFoAuJLlYTZj84ivo9lclLu8+Q3R6BegGYeKiLwpcqsTdseLiTSHqLAcdwd3dywiXY4GCbp75uLntiI7WgM6QjNxXHAXcNqQMy51saJqohTiAmXhSLGG2jgxDXEhysRpz4fiiwOTPhp7+BMQFkhYHAqnExRuzp6cO4gJh8k5AgsnO9QMDiyAO1Eu5lHA5UCxBmGwBpeZBHNjE+tcRJr2QdLoMcYFkxHbCxPeghDwNcYGkxaFAKv2RODPXZyCqFpqWu6FiX3KSESfCJAiTV6Nqwrw6VWdQr2+mFUeWd7IiQxHm4lIJiZZSb6fc3IByDWCwHR83qHOk7F0tYeJsaDoxmd6c6ltZ+Ntk44clhuV1zj5buIOIenvKKoG5fbyExOskt/ODTq53yjeAUYOR9XfK6yjr8ixf2Ez+CJH4abaOjCDLc+Z6eVSwATSoe6xsEiazdxAu3dBotA2pxI3Z90wo/HhQThJpey3hIhta3KlscCiyoo47BJVoOzCXt0Mlcu1426uoGbuwFhqhUpi8b3+plCJpW5kP30evbCxnC1QS3G2vwUw8LhUN3JX9szwL2wBSd1yb3WuSi72Yy9GSIqmsMu+PKNRUEBHqNYNONKQHazGTF4pXNj6RtK3wo2GVuJX7f8LZDdqOqUxcw0x+LSnC5PD6e5oPS5tTfSsJE+cIkxMBiYy9C+IC6u2tya/2mXyRf2tlxIlK36lKlSrwb/kNl0b38qyYGTIAAAAASUVORK5CYII=" height="15vh" width="15vw"> +7 966 777 77 77<br><br>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACLklEQVR4nO2XP2hUQRDGNyoIihERsVAbURBEc7dzOTGgotgoWKa1tLXTMpZ2cgjezZwRSZlWrEKKFIJFQEEQBEEQJaAvb+adiBrRldF33kMTcn+8vL1zf7DweLeP/b6b2dlZYwKBQCCQB0DihmGYoTNiBhQIRjwDhj8izo0Y33EtjWsaAZTFYi0+bTwF6lK2xI/WN9IsacgPStNy0HhC6d7yAUs8A8jfV9O7WkRuAfGKvrPInyzKzXIlGs3LQLkSjaoG1fJLK6+oxnWNKIVqchhIZpu/WeLIYnx1ctZt3jAHU24TUHzZEi+1dMjcOC0f7bhqAfJZi/Ikk27PoZ5c7LcHS3wOSJ5m1y1hcqG38tvmP/MvKHSRCR2fI8dnlrYD8o0/chUL0409vRo4dkd26T4A4s9pBL4AcQUw3tm3A7FM0f5s9QCSGEiuH6q4rZ0aODPltti6XAHkd91WS+j1ZG/W899pgPwCUCbb/b6Ect6iPGsZkEVL8al8WhTnRlQ8kLzKCJovVOOxNRfGxhGL/DDTgr/RqOheNHn3WoBvt2l6WZRGun++afqdqH/Y25wzfjvZrXlvib+ma37UfTFx9/0O75rGsWq0D0juq5G0uiWAfE3Hz+fUpM7Rud53v4BsgWTh75scPy7WkpMD18YXa/ElIH5pUV7rWdSPzho26j6iZbmb0twu/8HFasCAYMQzIETEMyBExDMgRMQzIETE94jAgA8zNEYCgUAgYHLgBy27+8ZWjpvEAAAAAElFTkSuQmCC" height="20vh" width="20vw" id="icon_header_place"> fwewe@mail.ru</p><br>
+            <a href=""><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/2048px-Telegram_2019_Logo.svg.png" alt="tg" width="40vh" id="icon_footer_place"></a>
+            &nbsp;&nbsp;<a href=""><img src="https://cdn.icon-icons.com/icons2/2429/PNG/512/whatsapp_logo_icon_147205.png" alt="tg" width="40vh" id="icon_footer_place"></a>
+            <br><u><p>Политика компании в отношении<br> обработки персональных данных</p></u>
+        </div>
+
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById("call_app_window");
+            const btn = document.getElementById("call_app");
+            const span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
