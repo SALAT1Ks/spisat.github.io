@@ -14,15 +14,19 @@
 body{
     background: rgb(213, 233, 255);
 }
-.wrapper{
+
+.wrapper {
     display: flex;
     flex-flow: row wrap;
     text-align: center;
     font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+
 }
 
-.wrapper > *{
-    flex: 1 100%
+.wrapper > * {
+    flex: 1 1 100%;
 }
 
 
@@ -41,15 +45,15 @@ body{
     align-items: center;
     justify-content: center;
     position: fixed;
-    background: rgba(128, 128, 128, 0.2); /* Полупрозрачный серый фон */
-    backdrop-filter: blur(2ch) saturate(180%); /* Размытие и насыщенность */
-    -webkit-backdrop-filter: blur(10px) saturate(180%); /* Поддержка для Safari */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Полупрозрачная граница для эффекта стекла */
+    background: rgba(128, 128, 128, 0.2); 
+    backdrop-filter: blur(2ch) saturate(180%); 
+    -webkit-backdrop-filter: blur(10px) saturate(180%); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.1); /* Небольшая тень для глубины */
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.1);
 
 }
 
@@ -119,7 +123,9 @@ body{
     display: flex;
     align-items: flex-start; 
     margin-left: 2rem;
+    fill:rgb(41, 175, 253);
 }
+
 
 .phone_number_head a{
     text-decoration: none;
@@ -146,6 +152,151 @@ body{
 .call_app_img {
     margin-left: 1rem;
 }
+
+
+
+
+
+.container-phone-svg {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.container-phone-svg svg {
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#menu_phone {
+    height: 20vh;
+    width: 20vw;
+}
+
+#cross_phone {
+    height: 20vh;
+    width: 20vw;
+}
+
+.window_phone {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.window_content_phone {
+    position: fixed;
+    left: -55vw; /* Initially off-screen */
+    top: 0;
+    background-color: #fefefe;
+    padding: 2vw 2vw 0 0;
+    border: 1px solid #888;
+    border-radius: 0 2vh 2vh 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 55vw;
+    overflow-y: auto;
+    transition: left 0.5s ease-in-out;
+    padding-left: 1%;
+}
+
+.window_content_phone.show {
+    left: 0; 
+}
+
+#window_text h1{
+    text-align: center;
+}
+
+#window_text h5{
+    text-align: center;
+    color: #202020;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#transition_button {
+    width: 48vw;
+    height: 7vh;
+}
+
+.window-menu-content h2 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.window-menu-content p {
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+.logo-phone-window {
+    margin-top: 2rem;
+}
+
+.window-menu-content table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.window-menu-content td {
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    border: 0px solid gray;
+    
+}
+
+.window-menu-content tr:first-child button {
+    border: 2px solid rgb(213, 233, 255, 0.9);
+    border-radius: 0 2vh 0 0; 
+    border-bottom: none;
+    padding: 2%;
+
+}
+
+.window-menu-content tr button {
+    border: 2px solid rgb(213, 233, 255, 0.9);
+    border-radius: 0; 
+    padding: 2%;
+    border-bottom: none;
+}
+
+.window-menu-content tr:last-child button {
+    border: 2px solid rgb(213, 233, 255, 0.9);
+    border-radius: 0 0 2vh 0; 
+    padding: 2%;
+
+}
+
+
 /*! конец шапки !*/
 
 
@@ -174,6 +325,7 @@ body{
     align-items: center;
     justify-content: center;
     height: 100%; 
+    width: 100%;
     font-size: 1rem;
     padding: 1%;
 }
@@ -302,13 +454,108 @@ body{
 
 
 /*! начала медиа !*/
-@media screen and (min-width:600px) {
+@media screen and (max-width: 840px) {
+    .header {
+        display: flex;
+        width: 100%;
+        background: rgba(128, 128, 128, 0.2); 
+        backdrop-filter: blur(2ch) saturate(180%); 
+        -webkit-backdrop-filter: blur(10px) saturate(180%); 
+        border: 1px solid rgba(255, 255, 255, 0.2); 
+        box-shadow: none;
+    }
 
+    .header-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo_head img {
+        align-self: start; 
+        margin-left: 3rem;
+    }
+
+    .adres_head,
+    .time_work_head,
+    .messendger_head,
+    .phone_number_head,
+    .call_app_img {
+        display: none !important;
+    }
+
+    .container-phone-svg {
+        display: block !important; 
+    }
+    .container-phone-svg svg {
+        display: block !important;
+        width: 4vw !important;
+        height: 4vh !important;
+    }
+
+    .footer-content * {
+        text-align: center;
+        justify-content: center; 
+        align-items: center; 
+    }
     
+    .footer-content {
+        font-size: 0.75rem;
+        flex-direction: column;
+    }
+    
+    .left-footer {
+        margin-right: 0;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .logo-footer {
+        margin-left: 0;
+        margin-right: 0;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .right-footer {
+        margin-left: 0;
+    }
+
+    .adres-footer {
+        margin-left: -1rem;
+    }
+
+    .adres-footer svg {
+        margin-top: -1rem;
+    }
+
+    .messenger-footer {
+        margin-right: 0;
+    }
 }
 
+
+
+
 @media screen and (max-width:1100px) {
-   
+
+
+    .container-phone-svg {
+        display: none;
+    }
+
+    .messenger-footer svg {
+        height: 4vh;
+        width: 4vh;
+        margin-right: 0rem; 
+        
+    }
+
+    .footer-content {
+        font-size: 0.8rem;
+    }
+
     .adres_head {
         margin-left:1.5rem;
         margin-right: 1.3rem;
@@ -364,6 +611,9 @@ body{
 @media screen and (min-width:1100px) {
     
 
+    .container-phone-svg {
+        display: none;
+    }
 
     .phone_number_head svg {
         margin-right: -0.65rem;
@@ -421,7 +671,6 @@ body{
                 <div class="time_work_head">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/><path d="M12,6a1,1,0,0,0-1,1v4.325L7.629,13.437a1,1,0,0,0,1.062,1.7l3.84-2.4A1,1,0,0,0,13,11.879V7A1,1,0,0,0,12,6Z"/></svg>
 
-    
                     <p>
                         Пн-Пт:<br>
                         9:00-16:00
@@ -439,9 +688,9 @@ body{
                 </div>
                 
                 <div class="phone_number_head">
-                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920.000000 920.000000" preserveAspectRatio="xMidYMid meet">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920.000000 920.000000" preserveAspectRatio="xMidYMid meet">
                         <g transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)"
-                        fill="#000000" stroke="none">
+                        fill="rgb(41, 175, 253)" stroke="none">
                         <path d="M2453 7910 c-396 -31 -764 -156 -949 -324 -104 -94 -154 -217 -206
                         -506 -19 -107 -23 -159 -22 -360 0 -234 8 -340 44 -605 167 -1216 719 -2323
                         1595 -3201 110 -110 256 -247 325 -304 923 -765 2009 -1208 3225 -1315 227
@@ -476,12 +725,77 @@ body{
                     </a>
 
                 </div>
+
+                <div class="container-phone-svg" onclick="toggleMenu()">
+                    <svg id="menu_phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="visible">
+                        <rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/>
+                    </svg>
+                    <svg id="cross_phone" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512" class="hidden">
+                        <path d="M23.707.293h0a1,1,0,0,0-1.414,0L12,10.586,1.707.293a1,1,0,0,0-1.414,0h0a1,1,0,0,0,0,1.414L10.586,12,.293,22.293a1,1,0,0,0,0,1.414h0a1,1,0,0,0,1.414,0L12,13.414,22.293,23.707a1,1,0,0,0,1.414,0h0a1,1,0,0,0,0-1.414L13.414,12,23.707,1.707A1,1,0,0,0,23.707.293Z"/>
+                     </svg>
+                </div> 
+
+
+            </div>
+
+            <div class="phone-menu">
+
+
+
+                <div id="menu_phone_window" class="window_phone">
+                    <div class="window_content_phone">
+                        <span class="close">&times;</span>
+            
+                        <div class="logo-window"></div>
+            
+                        <div class="window-menu-content">      
+                            <table>
+                                <thead>
+                                    <h2>Меню</h2>
+                                </thead>
+                                <tbody>
+                                    <tr >
+                                        <td>
+                                            <button  onclick="location.href='tariffy'" id="transition_button"><p>Тарифы</p></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button onclick="location.href='required_documents'" id="transition_button"><p>Необходимые документы</p></button>     
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button onclick="location.href='about'" id="transition_button"><p>О нас</p></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button onclick="location.href='contacts'" id="transition_button"><p>Контакты</p></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button onclick="location.href='index'" id="transition_button"><p>На главную</p></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+            
+                        <div class="logo-phone-window">
+                            <img src="https://png.pngtree.com/png-vector/20190326/ourlarge/pngtree-notary-law-logo-png-image_868690.jpg" width="100vw" height="100vh">           
+                        </div>
+                    </div>
+                </div>
+            
             </div>
 
 
         </header>
 
         <div class="main">
+
 
         </div>
 
@@ -562,7 +876,8 @@ body{
                         </a>
 
                         <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" clip-rule="evenodd"><path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"/><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"/><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"/><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"/><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"/></svg>    
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" clip-rule="evenodd"><path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"/><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"/><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"/><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"/><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"/>
+                            </svg>    
                         </a>
                     </div>
 
@@ -580,6 +895,66 @@ body{
         </footer>
 
     </div>
+
+
+
+<script>
+    function toggleMenu() {
+        const menu_phone = document.getElementById('menu_phone');
+        const cross_phone = document.getElementById('cross_phone');
+
+        if (menu_phone.classList.contains('visible')) {
+            menu_phone.classList.remove('visible');
+            menu_phone.classList.add('hidden');
+            cross_phone.classList.remove('hidden');
+            cross_phone.classList.add('visible');
+            openModal();
+        } else {
+            closeModal();
+        }
+    }
+
+    function openModal() {
+        const modal = document.getElementById("menu_phone_window");
+        const windowContent = modal.querySelector(".window_content_phone");
+        modal.style.display = "block";
+        setTimeout(() => {
+            windowContent.classList.add("show");
+        }, 10); // Slight delay to allow display change to take effect
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("menu_phone_window");
+        const windowContent = modal.querySelector(".window_content_phone");
+        windowContent.classList.remove("show");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 500); // Match this delay with the transition duration
+        const menu_phone = document.getElementById('menu_phone');
+        const cross_phone = document.getElementById('cross_phone');
+        menu_phone.classList.remove('hidden');
+        menu_phone.classList.add('visible');
+        cross_phone.classList.remove('visible');
+        cross_phone.classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const modal = document.getElementById("menu_phone_window");
+        const btn = document.getElementById("menu_phone");
+        const span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            closeModal();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    });
+</script>
+
 </body>
 
 </html>
